@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="resources-loading-tracker.js"></script>
+    <script defer src="unity-bootstrap.js"></script>
+    <script>
+
+        const DATA_BUNDLE_FILE_URI = "Build/{{{ DATA_FILENAME }}}";
+        const CODE_BUNDLE_FILE_URI = "Build/{{{ CODE_FILENAME }}}";
+
+        const LOADING_MESSAGES = [
+          "🍄‍🟫 Loading spores...",
+          "🍄 Growing mushrooms...",
+          "⛏️ Cultivating the colony...",
+          "🫖 Infusing the mycelium...",  
+          "🍄 Brewing mushroom magic...",
+        ];
+        const LAUNCHING_MESSAGE = 
+          "🚀 Launching the experience...";
+
+
+        // List here all the http resources needed before the app can start, 
+        // Set uncompressed content-length approximation if the server doesn't provide it via headers
+        // (could be the case with gzip/br compression)
+        const TRACKED_FILES = [
+            {
+                uri: DATA_BUNDLE_FILE_URI,
+                contentLength: {{{ DATA_BUNDLE_SIZE_FALLBACK || 0 }}},
+                progress: 0,
+                bitReceived: 0,
+            },
+            {
+                uri: CODE_BUNDLE_FILE_URI,
+                contentLength: {{{ CODE_BUNDLE_SIZE_FALLBACK || 0 }}},
+                progress: 0,
+                bitReceived: 0,
+            },
+        ];
+
+    </script>
+  </head>
+
+  <body>
+
+    <div id="unity-load-progress">
+      <div id="unity-load-progress--percent">0%</div>
+      <div id="unity-load-progress--label">Downloading...</div>
+      <progress id="unity-load-progress--bar" max="100" value="0"></progress>
+      <div id="unity-load-progress--message">🍝 I'm waiting some spicy sauce to be served</div>
+    </div>
+
+    <div id="unity-container">
+      <canvas
+        id="unity-canvas"
+        width="{{{ WIDTH }}}"
+        height="{{{ HEIGHT }}}"
+        tabindex="-1"
+        data-pixel-art="{{{ OPTIMIZE_FOR_PIXEL_ART }}}"
+      ></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"></div>
+    </div>
+
+  </body>
+</html>
