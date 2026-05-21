@@ -6,6 +6,7 @@
 I wrote it as the progress bar in the default Unity WebGL template is buggy for me when the data is Brotli/Gzip compressed.
 
 Tested on Unity 6000.3.9.
+Tested on Chrome 148.0, Firefox 140.1
 
 ### How to use
 
